@@ -1,3 +1,5 @@
+import FormCandidate from "../components/formCandidate";
+
 export default function template() {
-  return <p>my template</p>;
+  return <FormCandidate />;
 }
