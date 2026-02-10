@@ -1,9 +1,20 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-from fastapi import FastAPI
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+
+from app.models.candidate import Candidate
+from app.models.employer import Employer
+from app.models.letter import Letter
+from app.schemas.candidate import CandidateRead, CandidateCreate
+from app.schemas.employer import EmployerRead, EmployerCreate
+from app.schemas.letter import LetterCreate, LetterRead
+
+from .db import get_db
+
 
 ENV_PATH = Path(__file__).resolve().parent / ".env"
 load_dotenv(dotenv_path=ENV_PATH)
@@ -22,6 +33,47 @@ app.add_middleware(
 )
 
 
-@app.get("/health")
-def health():
-    return {"ok": True}
+@app.post('/candidate', response_model=CandidateRead)
+def create_candidate_details(
+    candidate: CandidateCreate,
+    db: Session = Depends(get_db)
+) : 
+    db_candidate = Candidate(**candidate.dict())
+    db.add(db_candidate)
+    db.commit()
+    db.refresh(db_candidate)
+    return db_candidate
+
+@app.get("/candidate", response_model=list[CandidateRead])
+def list_candidates(db: Session = Depends(get_db)):
+    return db.query(Candidate).all()
+
+@app.post('/employer', response_model=EmployerRead)
+def create_employer_details(
+    employer: EmployerCreate,
+    db: Session = Depends(get_db)
+) : 
+    db_employer = Employer(**employer.dict())
+    db.add(db_employer)
+    db.commit()
+    db.refresh(db_employer)
+    return db_employer
+
+@app.get("/employer", response_model=list[EmployerRead])
+def list_employers(db: Session = Depends(get_db)):
+    return db.query(Employer).all()
+
+@app.post('/letter', response_model=LetterRead)
+def create_letter_details(
+    letter: LetterCreate,
+    db: Session = Depends(get_db)
+) : 
+    db_letter = Letter(**letter.dict())
+    db.add(db_letter)
+    db.commit()
+    db.refresh(db_letter)
+    return db_letter
+
+@app.get("/letter", response_model=list[LetterRead])
+def list_letters(db: Session = Depends(get_db)):
+    return db.query(Letter).all()
