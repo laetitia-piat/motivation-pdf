@@ -48,6 +48,10 @@ def create_candidate_details(
 def list_candidates(db: Session = Depends(get_db)):
     return db.query(Candidate).all()
 
+@app.get("/candidate/{candidate_id}", response_model=CandidateRead)
+def get_candidate(candidate_id: int, db: Session = Depends(get_db)):
+    return db.query(Candidate).filter(Candidate.id == candidate_id).first()
+
 @app.post('/employer', response_model=EmployerRead)
 def create_employer_details(
     employer: EmployerCreate,
@@ -63,6 +67,10 @@ def create_employer_details(
 def list_employers(db: Session = Depends(get_db)):
     return db.query(Employer).all()
 
+@app.get("/employer/{employer_id}", response_model=EmployerRead)
+def get_employer(employer_id: int, db: Session = Depends(get_db)):
+    return db.query(Employer).filter(Employer.id == employer_id).first()
+
 @app.post('/letter', response_model=LetterRead)
 def create_letter_details(
     letter: LetterCreate,
@@ -77,3 +85,7 @@ def create_letter_details(
 @app.get("/letter", response_model=list[LetterRead])
 def list_letters(db: Session = Depends(get_db)):
     return db.query(Letter).all()
+
+@app.get("/letter/{letter_id}", response_model=LetterRead)
+def get_letter(letter_id: int, db: Session = Depends(get_db)): 
+    return db.query(Letter).filter(Letter.id == letter_id).first()
