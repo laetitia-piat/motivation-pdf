@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function formLetter({ onSuccess }: { onSuccess: () => void }) {
+export default function formBody({ onSuccess }: { onSuccess: () => void }) {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ export default function formLetter({ onSuccess }: { onSuccess: () => void }) {
   });
 
   const onSubmit = async (data: FormValues) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/letter`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/body`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

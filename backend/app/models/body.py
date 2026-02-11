@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String
 from app.db import Base
 
 
-class Letter(Base):
-    __tablename__ = "letter"
+class Body(Base):
+    __tablename__ = "body"
 
     id = Column(Integer, primary_key=True, index=True)
     subject_line = Column(String, nullable=False)

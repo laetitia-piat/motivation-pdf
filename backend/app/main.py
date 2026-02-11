@@ -8,10 +8,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.models.candidate import Candidate
 from app.models.employer import Employer
-from app.models.letter import Letter
+from backend.app.models.body import Body
 from app.schemas.candidate import CandidateRead, CandidateCreate
 from app.schemas.employer import EmployerRead, EmployerCreate
-from app.schemas.letter import LetterCreate, LetterRead
+from backend.app.schemas.body import BodyCreate, BodyRead
 
 from .db import get_db
 
@@ -71,21 +71,21 @@ def list_employers(db: Session = Depends(get_db)):
 def get_employer(employer_id: int, db: Session = Depends(get_db)):
     return db.query(Employer).filter(Employer.id == employer_id).first()
 
-@app.post('/letter', response_model=LetterRead)
-def create_letter_details(
-    letter: LetterCreate,
+@app.post('/body', response_model=BodyRead)
+def create_body_details(
+    body: BodyCreate,
     db: Session = Depends(get_db)
 ) : 
-    db_letter = Letter(**letter.dict())
-    db.add(db_letter)
+    db_body = Body(**body.dict())
+    db.add(db_body)
     db.commit()
-    db.refresh(db_letter)
-    return db_letter
+    db.refresh(db_body)
+    return db_body
 
-@app.get("/letter", response_model=list[LetterRead])
-def list_letters(db: Session = Depends(get_db)):
-    return db.query(Letter).all()
+@app.get("/body", response_model=list[BodyRead])
+def list_bodies(db: Session = Depends(get_db)):
+    return db.query(Body).all()
 
-@app.get("/letter/{letter_id}", response_model=LetterRead)
-def get_letter(letter_id: int, db: Session = Depends(get_db)): 
-    return db.query(Letter).filter(Letter.id == letter_id).first()
+@app.get("/body/{body_id}", response_model=BodyRead)
+def get_body(body_id: int, db: Session = Depends(get_db)): 
+    return db.query(Body).filter(Body.id == body_id).first()

@@ -4,12 +4,50 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Motivation Letter PDF Generator</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 22mm;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #111;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+      }
+      .small {
+        font-size: 10.5pt;
+        color: #333;
+      }
+      .mt {
+        margin-top: 18px;
+      }
+      .signature {
+        margin-top: 50px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Motivation Letter PDF Generator</h1>
-    <p>
-      This is a simple motivation letter PDF generator. Please fill in the form
-      to generate your motivation letter.
-    </p>
+    {% if candidate %}
+    <div>
+      <strong>{{ candidate.first_name }} {{ candidate.last_name }}</strong>
+    </div>
+    <div class="small">{{ candidate.address_line_1 }}</div>
+    {% if candidate.address_line_2%}
+    <div class="small">{{ candidate.address_line_2 }}</div>
+    {% endif %}
+    <div class="small">{{ candidate.postal_code }} {{ candidate.city }}</div>
+    <div class="small">{{ candidate.email }}</div>
+    <div class="small">{{ candidate.phone }}</div>
+    {%endif%} {% if employer %}
+    <div class="mt">
+      <div><strong>{{ company_name}}</strong></div>
+      <div class="small">{{ entreprise_adresse }}</div>
+    </div>
+    {% endif %}
   </body>
 </html>

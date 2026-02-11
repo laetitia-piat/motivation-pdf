@@ -2,7 +2,7 @@
 import { useState } from "react";
 import FormCandidate from "../components/formCandidate";
 import FormEmployer from "../components/formEmployer";
-import FormLetter from "../components/formLetter";
+import FormBody from "../components/formBody";
 
 export default function template() {
   const [step, setStep] = useState(1);
@@ -11,7 +11,7 @@ export default function template() {
     <div>
       {step === 1 && <FormCandidate onSuccess={() => setStep(2)} />}
       {step === 2 && <FormEmployer onSuccess={() => setStep(3)} />}
-      {step === 3 && <FormLetter onSuccess={() => setStep(4)} />}
+      {step === 3 && <FormBody onSuccess={() => setStep(4)} />}
     </div>
   );
 }

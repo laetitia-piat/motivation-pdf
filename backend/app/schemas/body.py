@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class LetterCreate(BaseModel):
+class BodyCreate(BaseModel):
     subject_line: str
     letter_salutation: str
     part_1: str
@@ -14,7 +14,7 @@ class LetterCreate(BaseModel):
     complimentary_close: str
     signature: str
 
-class LetterRead(BaseModel):
+class BodyRead(BaseModel):
     id: int
     subject_line: str
     letter_salutation: str
