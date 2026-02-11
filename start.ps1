@@ -1,2 +1,2 @@
-Start-Process powershell -ArgumentList "cd back; uvicorn main:app --reload --port 8000"
-Start-Process powershell -ArgumentList "cd front; npm run dev"
+Start-Process powershell -ArgumentList "cd backend; uvicorn app.main:app --reload --port 8000"
+Start-Process powershell -ArgumentList "cd frontend; npm run dev"
