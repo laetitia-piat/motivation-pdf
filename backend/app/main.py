@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.models.candidate import Candidate
 from app.models.employer import Employer
-from backend.app.models.body import Body
+from app.models.body import Body
 from app.schemas.candidate import CandidateRead, CandidateCreate
 from app.schemas.employer import EmployerRead, EmployerCreate
 from app.schemas.body import BodyCreate, BodyRead
