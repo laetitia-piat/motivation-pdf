@@ -4,13 +4,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const formSchema = z.object({
-  company_name: z.string().min(1, "Company name is required"),
-  first_name: z.string().min(1, "First name is required"),
-  last_name: z.string().min(1, "Last name is required"),
-  address_line_1: z.string().min(1, "Address line 1 is required"),
+  company_name: z.string().optional(),
+  first_name: z.string().optional(),
+  last_name: z.string().optional(),
+  address_line_1: z.string().optional(),
   address_line_2: z.string().optional(),
-  post_code: z.string().min(1, "Postal code is required"),
-  city: z.string().min(1, "City is required"),
+  post_code: z.string().optional(),
+  city: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -49,31 +49,38 @@ export default function formEmployer({ onSuccess }: { onSuccess: () => void }) {
       >
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Nom de l'entreprise"
           {...register("company_name")}
         />
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Prénom"
           {...register("first_name")}
         />
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Nom"
           {...register("last_name")}
         />
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Adresse ligne 1"
           {...register("address_line_1")}
         />
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Adresse ligne 2 (optionnel)"
           {...register("address_line_2")}
         />
         <input
           className="border border-gray-300 rounded px-3 py-2"
-          {...register("city")}
+          placeholder="Code postal"
+          {...register("post_code")}
         />
         <input
           className="border border-gray-300 rounded px-3 py-2"
-          {...register("post_code")}
+          placeholder="Ville"
+          {...register("city")}
         />
         <button type="submit">Valider</button>
         <button onClick={() => onSuccess()}>Ignorer</button>

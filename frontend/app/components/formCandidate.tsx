@@ -55,42 +55,42 @@ export default function formCandidate({
       >
         <input
           className="border border-gray-300 rounded px-3 py-2"
-          defaultValue="first name"
+          placeholder="Prénom"
           {...register("first_name")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Nom"
           {...register("last_name")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Adresse ligne 1"
           {...register("address_line_1")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Adresse ligne 2 (optionnel)"
           {...register("address_line_2")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
-          {...register("city")}
-        />
-
-        <input
-          className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Code postal"
           {...register("post_code")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Ville"
+          {...register("city")}
+        />
+        <input
+          className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Email"
           {...register("email")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
+          placeholder="Numéro de téléphone"
           {...register("phone_number")}
         />
 
