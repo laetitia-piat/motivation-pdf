@@ -16,7 +16,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function formCandidate() {
+export default function formCandidate({
+  onSuccess,
+}: {
+  onSuccess: () => void;
+}) {
   const {
     register,
     handleSubmit,
@@ -36,7 +40,10 @@ export default function formCandidate() {
     if (!res.ok) {
       const err = await res.json().catch(() => null);
       console.log("FastAPI 422 detail:", err);
+
       return;
+    } else {
+      onSuccess();
     }
   };
   return (

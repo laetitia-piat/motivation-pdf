@@ -15,7 +15,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function formEmployer() {
+export default function formEmployer({ onSuccess }: { onSuccess: () => void }) {
   const {
     register,
     handleSubmit,
@@ -36,6 +36,8 @@ export default function formEmployer() {
       const err = await res.json().catch(() => null);
       console.log("FastAPI 422 detail:", err);
       return;
+    } else {
+      onSuccess();
     }
   };
   return (
@@ -53,33 +55,28 @@ export default function formEmployer() {
           className="border border-gray-300 rounded px-3 py-2"
           {...register("first_name")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
           {...register("last_name")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
           {...register("address_line_1")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
           {...register("address_line_2")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
           {...register("city")}
         />
-
         <input
           className="border border-gray-300 rounded px-3 py-2"
           {...register("post_code")}
         />
-
         <button type="submit">Valider</button>
+        <button onClick={() => onSuccess()}>Ignorer</button>
       </form>
     </main>
   );
