@@ -11,7 +11,7 @@ from app.models.employer import Employer
 from backend.app.models.body import Body
 from app.schemas.candidate import CandidateRead, CandidateCreate
 from app.schemas.employer import EmployerRead, EmployerCreate
-from backend.app.schemas.body import BodyCreate, BodyRead
+from app.schemas.body import BodyCreate, BodyRead
 
 from .db import get_db
 
