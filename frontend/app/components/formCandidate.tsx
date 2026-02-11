@@ -41,6 +41,7 @@ export default function formCandidate() {
   };
   return (
     <main style={{ padding: 24 }}>
+      <h1 className="text-center mb-5">Formulaire Candidat</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ display: "grid", gap: 12 }}
