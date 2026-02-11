@@ -29,7 +29,7 @@ export default function formLetter({ onSuccess }: { onSuccess: () => void }) {
   });
 
   const onSubmit = async (data: FormValues) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/body`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/letter`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

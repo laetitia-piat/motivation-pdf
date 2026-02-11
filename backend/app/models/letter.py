@@ -3,7 +3,7 @@ from app.db import Base
 
 
 class Letter(Base):
-    __tablename__ = "body"
+    __tablename__ = "letter"
 
     id = Column(Integer, primary_key=True, index=True)
     subject_line = Column(String, nullable=False)
@@ -15,5 +15,5 @@ class Letter(Base):
     part_5 = Column(String, nullable=True)
     part_6 = Column(String, nullable=True)
     part_7 = Column(String, nullable=True)
-    complementary_close = Column(String, nullable=False)
+    complimentary_close = Column(String, nullable=False)
     signature = Column(String, nullable=False)

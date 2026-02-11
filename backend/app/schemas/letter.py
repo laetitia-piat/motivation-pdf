@@ -11,7 +11,7 @@ class LetterCreate(BaseModel):
     part_5: str | None = None
     part_6: str | None = None
     part_7: str | None = None
-    complementary_close: str
+    complimentary_close: str
     signature: str
 
 class LetterRead(BaseModel):
@@ -25,7 +25,7 @@ class LetterRead(BaseModel):
     part_5: str | None = None
     part_6: str | None = None
     part_7: str | None = None
-    complementary_close: str
+    complimentary_close: str
     signature: str
 
     class Config:
